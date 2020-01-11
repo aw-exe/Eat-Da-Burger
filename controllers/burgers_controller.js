@@ -23,7 +23,7 @@ router.get("/", function(req, res) {
         );
     });
 
-    router.put("/api/burgers/ :id", function(req, res) {
+    router.put("/api/burgers/:id", function(req, res) {
         let condition = "id = " + req.params.id;
         
         console.log("condition", condition);
@@ -38,7 +38,7 @@ router.get("/", function(req, res) {
         });
     });
 
-    router.delete(condition, function(req, res){
+    router.delete("/api/burgers/:id", function(req, res) {
         let condition = "id = " + req.params.id;
         console.log("condition", condition);
 
@@ -52,7 +52,7 @@ router.get("/", function(req, res) {
     });
 });
 
-//Export Router
+//Export Routercondition
  
 module.exports = router;
 
