@@ -6,20 +6,20 @@ const orm = {
 
        connection.query(dbQuery, function (err, res) {
             if(err) {
-                throw: err;
+                throw err;
             }
             cb(res);
        });
-   } 
+   }
    insertOne: function(table, cols, conts, cb) {
-       const dbQuery = 
-       "INSERT INTO" + 
-       TABLE + 
-       "(" + 
-       cols.toString() + 
-       ")" + 
-       "VALUES (" + 
-       createQmarks(val.length) +
+       let dbQuery = 
+        "INSERT INTO" + 
+        TABLE + 
+        "(" + 
+        cols.toString() + 
+        ")" + 
+        "VALUES (" + 
+        createQmarks(val.length) +
         ")";
 
         console.log(dbQuery);
@@ -27,7 +27,38 @@ const orm = {
             if (err) {
                 thorw err;
             }
-            cb(res;)
+            cb(res);
         });
    }
+
+    updateOne: function (table, objColVals, condition, cb) {
+        let dbQuery=
+            "UPDATE" +
+            TABLE +
+            "SET" +
+            translateSql(objColVals) +
+            "WHERE" +
+            condition;
+
+            console.log(dbQuery);
+        connection.query(dbQuery, vals, function (err, res) {
+            if(err) {
+                throw err;
+            }
+            cb(res);
+           });
+        
+    },
+
+    deleteOne: function(table, condition, cb) {
+        let dbQuery = "DELETE FROM" + TABLE + "WHERE" + condition;
+        console.log(dbQuery);
+
+        connection.query(dbQuery, function (err, res){
+            if(err) {
+                throw err;
+            }
+            cb(res);
+        });
+    },
 };
