@@ -1,5 +1,29 @@
 const connection = require("../config/connection");
 
+//Create Qmarks function
+function createQmarks (num) {
+    let array = [];
+    for(let i = 0; i < num; i++){
+        array.push("?");
+    }
+    return array.toString();
+}
+
+
+function translateSql(obj) {
+    let array = [];
+    for(let key in ob) {
+        let value = ob[key];
+        if (Object.hasOwnProperty.call(ob, key)) {
+            if(typeof value === "string" && value.indexOf(" ") >= 0) {
+                value = "'" + VALUE + "'";
+            }
+            array.push(key + "=" + value)
+        }
+    }
+    return array.toString()
+}
+
 const orm = {
    selectAll: function(table, cb) {
        let dbQuery = "SELECT * FROM" + TABLE + ";";
@@ -25,7 +49,7 @@ const orm = {
         console.log(dbQuery);
         connection.query(dbQuery, vals, function (err, res) {
             if (err) {
-                thorw err;
+                throw err;
             }
             cb(res);
         });
