@@ -34,17 +34,18 @@ const orm = {
             }
             cb(res);
        });
-   }
-   insertOne: function(table, cols, conts, cb) {
+   },
+
+   insertOne: function(table, cols, vals, cb) {
        let dbQuery = 
         "INSERT INTO" + 
-        TABLE + 
-        "(" + 
+        table + 
+        " (" + 
         cols.toString() + 
-        ")" + 
+        ") " + 
         "VALUES (" + 
-        createQmarks(val.length) +
-        ")";
+        createQmarks(vals.length) +
+        ") ";
 
         console.log(dbQuery);
         connection.query(dbQuery, vals, function (err, res) {
@@ -53,25 +54,25 @@ const orm = {
             }
             cb(res);
         });
-   }
+   },
 
     updateOne: function (table, objColVals, condition, cb) {
         let dbQuery=
             "UPDATE" +
-            TABLE +
+            table +
             "SET" +
             translateSql(objColVals) +
             "WHERE" +
             condition;
 
-            console.log(dbQuery);
+        console.log(dbQuery);
+
         connection.query(dbQuery, vals, function (err, res) {
             if(err) {
                 throw err;
             }
             cb(res);
-           });
-        
+        }); 
     },
 
     deleteOne: function(table, condition, cb) {
@@ -84,5 +85,5 @@ const orm = {
             }
             cb(res);
         });
-    },
+    }
 };

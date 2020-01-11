@@ -26,11 +26,24 @@ $(function() {
             devoured: 1
         };
 
-    $.ajax("api/burgers/" + id, {
-        type: "PUT",
-        data: devouredState
-    }).then(function() {
-        console.log("Burger devoured");
-        location.reload();
+        $.ajax("api/burgers/" + id, {
+            type: "PUT",
+            data: devouredState
+        }).then(function() {
+            console.log("Burger devoured");
+            location.reload();
+        });
+    });
+
+    $(".trashBurger").on("click", function(event) {
+        event.preventDefault();
+
+        let id = $(this).data("id");
+        
+        //Delete request
+        $.ajax({
+            type: "DELETE",
+            url: "api/burgers/" + id
+        }).then(location.reload());
     });
 });
