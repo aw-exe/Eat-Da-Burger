@@ -14,6 +14,7 @@ if(process.env.JAWSDB_URL) {
     });
 };
 
+
 // Make connection.
 connection.connect(function(err) {
   if (err) {
@@ -25,3 +26,5 @@ connection.connect(function(err) {
 
 // Export connection for our ORM to use.
 module.exports = connection;
+
+// xp6i8vjncgjczkyu
